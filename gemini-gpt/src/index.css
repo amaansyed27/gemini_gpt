@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply transition-colors duration-500 ease-in-out;
+  }
+
+  /* Defaults / Dark Mode */
+  :root {
+    --bg-main: #343541;
+    --bg-sidebar: #202123;
+    --text-primary: #ECECF1;
+    --text-secondary: #9FA1A6;
+    --accent-color: #10a37f;
+  }
+
+  /* Light Mode */
+  .light {
+    --bg-main: #FFFFFF;
+    --bg-sidebar: #F7F7F8;
+    --text-primary: #343541;
+    --text-secondary: #6B6C7B;
+    --accent-color: #10a37f;
+  }
+
+  /* Paper Mode */
+  .paper {
+    --bg-main: #F4ECD8;
+    --bg-sidebar: #E9E1C9;
+    --text-primary: #433E36;
+    --text-secondary: #756D5E;
+    --accent-color: #A67C52;
+    font-family: 'Georgia', serif;
+  }
+
+  /* Liquid Mode (Premium) */
+  .liquid {
+    --bg-main: #000000;
+    --bg-sidebar: #050505;
+    --text-primary: #FFFFFF;
+    --text-secondary: #AAAAAA;
+    --accent-color: #6366f1;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+  }
+}
+
+@layer components {
+
+  /* Default Glass - Increased Transparency */
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/5 shadow-lg;
+    backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .liquid .glass-panel {
+    /* Highly transparent for apple-like liquid feel */
+    @apply bg-white/5 border-white/10;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+  }
+
+  /* Sidebar specific tweaks for liquid mode */
+  .liquid .sidebar-panel {
+    @apply bg-black/40 border-r border-white/5;
+    backdrop-filter: blur(30px) saturate(140%);
+  }
+}
+
+/* Animations */
+@keyframes gradient-xy {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-xy {
+  background-size: 200% 200%;
+  animation: gradient-xy 3s ease infinite;
+}
+
+
+/* Custom Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+}
+
+.liquid-border {
+  position: relative;
+  border-radius: 0.75rem;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.liquid-border::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2px;
+  background: linear-gradient(45deg, #ff0080, #7928ca, #ff0080);
+  filter: blur(10px);
+  animation: gradient-xy 3s linear infinite;
+  background-size: 400% 400%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.liquid .liquid-border:focus-within::before,
+.liquid .liquid-border:hover::before {
+  opacity: 0.8;
+}
+
+.dynamic-island {
+  @apply transition-all duration-300;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
