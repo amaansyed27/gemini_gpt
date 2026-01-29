@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { User, Copy, Check, Sparkles, Image as ImageIcon, Video, Pencil, Trash2, RotateCcw, Download, X } from 'lucide-react';
+import { User, Copy, Check, Image as ImageIcon, Video, Pencil, Trash2, RotateCcw, Download, X } from 'lucide-react';
+import GeminiLogo from '../../assets/Gemini_gpt_logo.png';
 import { cn } from '../../lib/utils';
 import { useTheme, THEMES } from '../../context/ThemeContext';
 import { useChatContext } from '../../context/ChatContext';
@@ -149,10 +150,10 @@ const MessageItem = ({ role, content, isThinking, isError, index, images }) => {
             <div className="text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 flex">
                 <div className={cn("relative flex-shrink-0 flex flex-col items-end", isUser ? "order-2" : "order-1")}>
                     <div className={cn(
-                        "w-8 h-8 rounded-lg flex items-center justify-center shadow-sm",
-                        isUser ? "bg-accent-color text-white" : "bg-gradient-to-br from-blue-500 to-purple-600 text-white"
+                        "w-8 h-8 rounded-lg flex items-center justify-center shadow-sm overflow-hidden",
+                        isUser ? "bg-accent-color text-white" : "transparent"
                     )}>
-                        {isUser ? <User size={18} /> : <Sparkles size={16} />}
+                        {isUser ? <User size={18} /> : <img src={GeminiLogo} alt="Gemini" className="w-6 h-6 object-contain" />}
                     </div>
                 </div>
 

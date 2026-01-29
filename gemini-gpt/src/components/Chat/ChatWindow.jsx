@@ -3,7 +3,7 @@ import MessageItem from './MessageItem';
 import InputArea from './InputArea';
 import ModelSwitcher from './ModelSwitcher';
 import { useChatContext } from '../../context/ChatContext';
-import { Sparkles } from 'lucide-react';
+import GeminiLogo from '../../assets/Gemini_gpt_logo.png';
 
 const ChatWindow = () => {
     const { messages, isLoading, error, sendMessage, currentModel, setCurrentModel } = useChatContext();
@@ -25,7 +25,7 @@ const ChatWindow = () => {
                 {messages.length === 0 ? (
                     <div className="h-full flex flex-col items-center justify-center text-text-primary px-4">
                         <div className="bg-bg-sidebar p-4 rounded-2xl mb-6 shadow-xl border border-white/5 animate-in fade-in zoom-in duration-500">
-                            <Sparkles size={48} className="text-accent-color" />
+                            <img src={GeminiLogo} alt="Gemini GPT" className="w-12 h-12 object-contain" />
                         </div>
                         <h2 className="text-2xl font-semibold mb-2">Welcome to Gemini GPT</h2>
                         <p className="text-text-secondary text-center max-w-md">
